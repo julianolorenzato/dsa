@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdbool.h>
 
 void swap(int *x, int *y)
 {
@@ -18,6 +19,28 @@ int *bubble_sort(int *arr, int arrSize)
                 swap(&arr[j], &arr[j + 1]);
             }
         }
+    }
+}
+
+// This version of bubble sort contains a boolean flag, that indicates
+// if were not swaps, if this happen, the arr is already sorted, and it breaks the outter loop
+int *bubble_sort_with_flag(int *arr, int arrSize)
+{
+    bool is_sorted = true;
+
+    for (int i = 0; i < arrSize; i++)
+    {
+        for (int j = 0; j < arrSize - i - 1; j++)
+        {
+            if (arr[j] > arr[j + 1])
+            {
+                is_sorted = false;
+                swap(&arr[j], &arr[j + 1]);
+            }
+        }
+
+        if (is_sorted)
+            break;
     }
 }
 
